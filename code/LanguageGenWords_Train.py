@@ -43,13 +43,13 @@ import matplotlib.pyplot as plt
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\MyPy\\LanguageGeneration\\NaturalLanguageGen"
+CURR_DIR = "C:\\Apps\\Docs\\Python\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
 
 # Path to the input text file. Also, name the output file and choose a destination.
 INPUT_FILE = '.\\Data\\Complete_Shakespeare_Copy.txt'
 OUTPUT_FILE = '.\\Data\\Complete_Shakespeare_cleaned.txt'
 
-MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenWords2\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
+MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenWords\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
 MODEL_WEIGHTS_DIR = os.path.dirname(MODEL_WEIGHTS_FILE)
 
 MODEL_IMG_FILE = ".\\model_GenWords.png"

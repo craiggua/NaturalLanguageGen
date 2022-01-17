@@ -31,19 +31,15 @@ from tensorflow.keras import utils as keras_utils
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\MyPy\\LanguageGeneration\\NaturalLanguageGen"
+CURR_DIR = "C:\\Apps\\Docs\\Python\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
 
 # Predictions reuses the previously cleaned file.
 INPUT_FILE = '.\\Data\\Complete_Shakespeare_cleaned.txt'
 
-MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenChars2\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
+MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenChars\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
 MODEL_WEIGHTS_DIR = os.path.dirname(MODEL_WEIGHTS_FILE)
 
-MODEL_IMG_FILE = ".\\model_GenChars.png"
-MODEL_RESULTS = ".\\model_GenChars_results.csv"
-
 # The constants below MUST be the SAME as the model trained in LanguageGenChars_training.py.
-#NUM_EPOCHS = 100
 SEQ_LEN = 100
 #BATCH_SIZE = 256
 UNITS = 128
@@ -110,32 +106,30 @@ char_num_map = dict((c, i) for i, c in enumerate(chars))
 input_char_len = len(text)
 vocab_len = len(chars)
 
-print ("Total number of characters overall:", input_char_len)
-print ("Total unique characters:", vocab_len)
+print("Total number of characters overall:", input_char_len)
+print("Total unique characters:", vocab_len)
+
+# Do a 1-time conversion to convert each char to it's integer representation.
+int_text = []
+int_text = [char_num_map[char] for char in text]
 
 x_seq_num = []
 y_pred_num = []
 
 # x_seq_num is a list of lists. The inner list is a sequence of SEQ_LEN. For 
-# each input sequence, save a corresponding character to be predicted in
-# y_pred_num[]. 
-print("\nPreparing sequences.")
+# each input sequence, save a corresponding integer in y_pred_num[] to be 
+# predicted for that sequence.
 for i in range(0, input_char_len - SEQ_LEN, 1):
     
-    # Define an input sequence of characters.  
-    in_seq = text[i:i + SEQ_LEN]
+    # Define an input sequence of integers.  
+    x_seq_num.append(int_text[i:i + SEQ_LEN])
 
-    # Holds 1 predicted character for each sequence from in_seq. 
-    out_seq = text[i + SEQ_LEN]
-
-    # Convert each character in in_seq and out_seq to an integer. Re-use the 
-    # char_num_map dict created earlier to find that char to integer mapping. 
-    x_seq_num.append([char_num_map[char] for char in in_seq])
-    y_pred_num.append(char_num_map[out_seq])
+    # Holds 1 predicted integer associated with 1 x_seq_num sequence above. 
+    y_pred_num.append(int_text[i + SEQ_LEN])
     
     
 num_sequences = len(x_seq_num)
-print ("\nNumber of sequences:", num_sequences)
+print("\nNumber of sequences:", num_sequences)
 
 # Numpy reshape will reshape x_seq_num to have samples, sequence length and 
 # input dimensions. This input is expected by our NN. 

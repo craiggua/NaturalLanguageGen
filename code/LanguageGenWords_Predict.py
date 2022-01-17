@@ -35,17 +35,15 @@ from tensorflow.keras import utils as keras_utils
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\MyPy\\LanguageGeneration\\NaturalLanguageGen"
+CURR_DIR = "C:\\Apps\\Docs\\Python\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
 
 # Predictions reuses the previously cleaned file.
 INPUT_FILE = '.\\Data\\Complete_Shakespeare_cleaned.txt'
 
-MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenWords2\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
+MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenWords\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
 MODEL_WEIGHTS_DIR = os.path.dirname(MODEL_WEIGHTS_FILE)
 
-MODEL_IMG_FILE = ".\\model_GenWords.png"
-MODEL_RESULTS = ".\\model_GenWords_results.csv"
-
+# The constants below MUST be the SAME as the model trained in LanguageGenChars_training.py.
 MAX_SEQ_LEN = 160
 BATCH_SIZE = 256
 UNITS = 128
