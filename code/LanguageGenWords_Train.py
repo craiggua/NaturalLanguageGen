@@ -43,7 +43,7 @@ import matplotlib.pyplot as plt
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\Apps\\Docs\\Python\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
+CURR_DIR = "C:\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
 
 # Path to the input text file. Also, name the output file and choose a destination.
 INPUT_FILE = '.\\Data\\Complete_Shakespeare_Copy.txt'
@@ -156,8 +156,8 @@ max_sequence_len = max([len(x) for x in sequences])
 if max_sequence_len > MAX_SEQ_LEN:
     max_sequence_len = MAX_SEQ_LEN
 
-# To make each sequence the same length, add padding at the end of the sequence. 
-# Also, truncate sequences from the end if they that exceeed the maxlen. 
+# To make each sequence the same length, add padding at the beginning of the sequence. 
+# Also, truncate sequences from the beginning if they that exceeed the maxlen. 
 # For more info see: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/pad_sequences
 sequences = np.array(pad_sequences(sequences, maxlen = max_sequence_len, padding='pre', truncating = 'pre'))
 

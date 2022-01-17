@@ -31,7 +31,7 @@ from tensorflow.keras import utils as keras_utils
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\Apps\\Docs\\Python\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
+CURR_DIR = "C:\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
 
 # Predictions reuses the previously cleaned file.
 INPUT_FILE = '.\\Data\\Complete_Shakespeare_cleaned.txt'

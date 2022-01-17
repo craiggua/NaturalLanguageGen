@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Purpose: Word level Natural Language Generation (NLG). This file loads a
-        previously trained word NLG model from LanguageGenChars_train.py, 
+        previously trained word NLG model from LanguageGenWords_train.py, 
         and predicts subsequent words. 
 
 To run: 
@@ -28,14 +28,11 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras import utils as keras_utils
 
-#import matplotlib.pyplot as plt
-
-
 # ---
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\Apps\\Docs\\Python\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
+CURR_DIR = "C:\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
 
 # Predictions reuses the previously cleaned file.
 INPUT_FILE = '.\\Data\\Complete_Shakespeare_cleaned.txt'
@@ -167,8 +164,8 @@ if max_sequence_len > MAX_SEQ_LEN:
     max_sequence_len = MAX_SEQ_LEN
 
 # https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/pad_sequences
-# To make each sequence the same length, add padding at the end of the sequence. 
-# Also, truncate sequences from the end if they that exceeed the maxlen. 
+# To make each sequence the same length, add padding at the beginning of the sequence. 
+# Also, truncate sequences from the beginning if they that exceeed the maxlen. 
 sequences = np.array(pad_sequences(sequences, maxlen = max_sequence_len, padding='pre', truncating = 'pre'))
 
 print ("\nNumber of patterns:", len(sequences))
