@@ -32,17 +32,17 @@ from tensorflow.keras import utils as keras_utils
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
+CURR_DIR = "C:\\NaturalLanguageGen\\code"
 
 # Predictions reuses the previously cleaned file.
-INPUT_FILE = '.\\Data\\Complete_Shakespeare_cleaned.txt'
+INPUT_FILE = '..\\data\\Complete_Shakespeare_cleaned.txt'
 
-MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenWords\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
+MODEL_WEIGHTS_FILE = "..\\Saved_Model\\training_GenWords\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
 MODEL_WEIGHTS_DIR = os.path.dirname(MODEL_WEIGHTS_FILE)
 
 # The constants below MUST be the SAME as the model trained in LanguageGenChars_training.py.
 MAX_SEQ_LEN = 160
-BATCH_SIZE = 256
+#BATCH_SIZE = 256
 UNITS = 128
 OUTPUT_DIM = 32
 
@@ -163,9 +163,9 @@ max_sequence_len = max([len(x) for x in sequences])
 if max_sequence_len > MAX_SEQ_LEN:
     max_sequence_len = MAX_SEQ_LEN
 
-# https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/pad_sequences
 # To make each sequence the same length, add padding at the beginning of the sequence. 
 # Also, truncate sequences from the beginning if they that exceeed the maxlen. 
+# More info: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/pad_sequences
 sequences = np.array(pad_sequences(sequences, maxlen = max_sequence_len, padding='pre', truncating = 'pre'))
 
 print ("\nNumber of patterns:", len(sequences))

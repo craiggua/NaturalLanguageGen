@@ -31,12 +31,12 @@ from tensorflow.keras import utils as keras_utils
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
+CURR_DIR = "C:\\NaturalLanguageGen\\code"
 
 # Predictions reuses the previously cleaned file.
-INPUT_FILE = '.\\Data\\Complete_Shakespeare_cleaned.txt'
+INPUT_FILE = '..\\data\\Complete_Shakespeare_cleaned.txt'
 
-MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenChars\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
+MODEL_WEIGHTS_FILE = "..\\Saved_Model\\training_GenChars\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
 MODEL_WEIGHTS_DIR = os.path.dirname(MODEL_WEIGHTS_FILE)
 
 # The constants below MUST be the SAME as the model trained in LanguageGenChars_training.py.
@@ -88,14 +88,8 @@ with open(INPUT_FILE, 'r', encoding='utf-8') as file:
 text = text[0:int(len(text)/4)]
 
 # NOTE: No need to clean here since the previously cleaned TXT file from 
-# the training file is reused here. 
-# Clean the data. Since the NN will try to learn to predict the next character
-# the fewer required characters it has to learn the model might be more accurate.
-#text = clean_text(raw_text)
+# the training file is reused here. Specified above as INPUT_FILE.
 
-# Save the cleaned text to see the text the model used. 
-#with open(OUTPUT_FILE, 'w', encoding='utf-8') as file:
-#    file.write(text)
 
 # NN's and other ML algorithms work with numeric data vs. text. Here set() 
 # gets unique characters. Next, each unique character is assigned an integer
@@ -161,10 +155,10 @@ model.add(Dense(y.shape[1], activation='softmax', name = "layer_3"))
 model = Sequential()
 model.add(LSTM(UNITS, activation='tanh', input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
 model.add(Dropout(0.2))
+model.add(LSTM(UNITS, return_sequences=True))
+model.add(Dropout(0.2))
 model.add(LSTM(UNITS))
 model.add(Dropout(0.2))
-#model.add(LSTM(UNITS))
-#model.add(Dropout(0.2))
 model.add(Dense(y.shape[1], activation='softmax'))
 '''
 
@@ -220,9 +214,9 @@ for i in range(NUM_CHARS_PREDICT):
     
     prediction = model.predict(x, verbose=0)
     
-    # Prediction is for all chars. The total chars is in input_char_len above. Need
-    # to get the highest prediction with argmax. Next, convert that prediction
-    # index location to the predicted char. 
+    # Prediction is for all chars. The total chars is in input_char_len above. 
+    # Need to get the highest prediction with argmax. Next, convert that 
+    # prediction index location to the predicted char. 
     index = np.argmax(prediction)
     pred_char = num_to_char[index]
     

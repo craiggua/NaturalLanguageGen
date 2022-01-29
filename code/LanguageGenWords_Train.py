@@ -8,9 +8,9 @@ Purpose: Word level Natural Language Generation (NLG).
         e. Image of the neural network model.
         f. Information about the complete test run is saved (ex: number of epochs, 
         total run time, details about the model, etc.)
-        g. Separate code to load the best performing model and generate text. 
-        This saves time since it could take many hours to create a good 
-        NLG model.
+        g. Separate code in LanguageGenWords_Predict.py to load the best 
+        performing trained model and generate text. This saves time since it 
+        could take many hours to create a good NLG model.
 
 To run: 
     1) Set constants below.
@@ -43,13 +43,13 @@ import matplotlib.pyplot as plt
 # Constants
 
 # Set CURR_DIR to the subdir with this PY file. Everything else is relative to this subdir.
-CURR_DIR = "C:\\MyPy\\LanguageGeneration\\GithubFiles\\NaturalLanguageGen"
+CURR_DIR = "C:\\NaturalLanguageGen\\code"
 
 # Path to the input text file. Also, name the output file and choose a destination.
-INPUT_FILE = '.\\Data\\Complete_Shakespeare_Copy.txt'
-OUTPUT_FILE = '.\\Data\\Complete_Shakespeare_cleaned.txt'
+INPUT_FILE = '..\\data\\Complete_Shakespeare_Copy.txt'
+OUTPUT_FILE = '..\\data\\Complete_Shakespeare_cleaned.txt'
 
-MODEL_WEIGHTS_FILE = ".\\Saved_Model\\training_GenWords\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
+MODEL_WEIGHTS_FILE = "..\\Saved_Model\\training_GenWords\\cp_Epoch_{epoch:02d}_Loss_{loss:.3f}.ckpt"
 MODEL_WEIGHTS_DIR = os.path.dirname(MODEL_WEIGHTS_FILE)
 
 MODEL_IMG_FILE = ".\\model_GenWords.png"
@@ -117,6 +117,7 @@ with open(INPUT_FILE, 'r', encoding='utf-8') as file:
 text = clean_text(raw_text)
 
 # Save the cleaned text to see the text the model used. 
+# This cleaned text file is also re-used in the predict PY file. 
 with open(OUTPUT_FILE, 'w', encoding='utf-8') as file:
     file.write(text)
 
@@ -158,7 +159,7 @@ if max_sequence_len > MAX_SEQ_LEN:
 
 # To make each sequence the same length, add padding at the beginning of the sequence. 
 # Also, truncate sequences from the beginning if they that exceeed the maxlen. 
-# For more info see: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/pad_sequences
+# More info: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/pad_sequences
 sequences = np.array(pad_sequences(sequences, maxlen = max_sequence_len, padding='pre', truncating = 'pre'))
 
 print ("\nNumber of patterns:", len(sequences))
@@ -227,6 +228,7 @@ time_diff_mins = elapsed_time / timedelta(minutes=1)
 print("Total runtime %.1f minutes or %.1f hours." % (time_diff_mins, time_diff_mins / 60))
 print("See %s for an image of the NN." % MODEL_IMG_FILE)
 print("See %s for detailed model results." % MODEL_RESULTS)
+print("See %s for saved models." % MODEL_WEIGHTS_DIR)
 
 # Plot and print model results.
 for key in history.history.keys():
