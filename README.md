@@ -12,5 +12,5 @@ The code examples include the following:
 
 Note, separately 4, 5 and 6 above can also be done in [TensorBoard](https://www.tensorflow.org/tensorboard/get_started).
 
-A few sample outputs:
+A few sample outputs showing results for the  simple neural network:
 ![A few sample outputs](https://github.com/craiggua/NaturalLanguageGen/blob/main/sample_output/LanguageGenChars_simplemodel_results.PNG)
