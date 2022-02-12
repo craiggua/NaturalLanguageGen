@@ -1,4 +1,4 @@
-# NaturalLanguageGen
+# Natural Language Generation Tutorial
 Character and word level natural language generation (NLG) tutorial. Uses Python and several types of neural networks (LSTM, deep LSTM, Bidirectional LSTM).
 
 The code examples include the following: 
@@ -12,5 +12,5 @@ The code examples include the following:
 
 Note, separately 4, 5 and 6 above can also be done in [TensorBoard](https://www.tensorflow.org/tensorboard/get_started).
 
-A few sample outputs showing results for the  simple neural network:
+Below are a few sample outputs showing results for the simple character based NLG code:
 ![A few sample outputs](https://github.com/craiggua/NaturalLanguageGen/blob/main/sample_output/LanguageGenChars_simplemodel_results.PNG)
